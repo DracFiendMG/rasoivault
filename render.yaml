@@ -1,0 +1,30 @@
+services:
+  # 1. FastAPI Backend Service
+  - type: web
+    name: rasoivault-api
+    runtime: python
+    region: oregon
+    plan: starter
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: BACKBOARD_API_KEY
+        sync: false
+      - key: BACKBOARD_BASE_URL
+        value: https://app.backboard.io/api
+      - key: MODEL_NAME
+        value: google/gemma-2-9b-it
+
+  # 2. React Vite Frontend Static Site
+  - type: static
+    name: rasoivault-web
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          name: rasoivault-api
+          type: web
+          property: host
