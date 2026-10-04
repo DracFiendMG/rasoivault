@@ -20,7 +20,7 @@ SAVED_RECIPES: List[AdaptedRecipeResponse] = []
 
 @app.get("/api/health")
 def health_check():
-    return {"status": "healthy", "model": "google/gemma-2-9b-it", "open_weights": True}
+    return {"status": "healthy", "model": "google/gemma-3-12b-it", "open_weights": True}
 
 @app.get("/api/profile", response_model=UserProfile)
 def get_profile():
