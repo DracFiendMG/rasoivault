@@ -6,9 +6,9 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 export default function App() {
   const [profile, setProfile] = useState({
     name: "Mom",
-    conditions: ["Diabetic Friendly (Low GI)", "Low Sodium"],
-    disliked_ingredients: ["Quinoa", "Bland Salads"],
-    preferred_oil: "Cold-Pressed Sesame / Mustard Oil",
+    preferences: ["Wholesome & Nutrient-Dense", "Ancient Millets Focus", "Light & Easy Digest"],
+    disliked_substitutes: ["Quinoa", "Bland Salads"],
+    preferred_oil: "Cold-Pressed Sesame / Groundnut Oil",
     spice_level: "Authentic Regional"
   });
 
@@ -110,7 +110,7 @@ Amma's note: "Don't make it dry, it should slide off the spoon smoothly."`;
               <HeartPulse className="w-3.5 h-3.5" /> Built for {profile.name}
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-stone-100 text-stone-600">
-              Gemma-2-9B • On-Device Ready
+              Gemma-3-12B • On-Device Ready
             </span>
           </div>
         </div>

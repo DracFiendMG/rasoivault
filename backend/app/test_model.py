@@ -13,9 +13,9 @@ async def test():
     asst = await client.create_assistant(name="Test Runner")
     thread = await client.create_thread(asst.assistant_id)
     
-    # Models to test: Gemma 2 27B first (for the Gemma prize), then other open weights
+    # Models to test: Gemma 3 12B first (for the Gemma prize), then other open weights
     candidates = [
-        {"provider": "openrouter", "model": "google/gemma-2-27b-it"},
+        {"provider": "openrouter", "model": "google/gemma-3-12b-it"},
         {"provider": "openrouter", "model": "meta-llama/llama-3.1-8b-instruct"},
         {"provider": "openai", "model": "gpt-4o-mini"},
     ]
