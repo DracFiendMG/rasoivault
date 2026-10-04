@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .schemas import RecipeAdaptRequest, AdaptedRecipeResponse, UserProfile
@@ -13,8 +14,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Simulated in-memory database for friend's persistent profile
 CURRENT_PROFILE = UserProfile()
+# Persistent storage for family recipes
+SAVED_RECIPES: List[AdaptedRecipeResponse] = []
 
 @app.get("/api/health")
 def health_check():
@@ -35,3 +37,18 @@ async def adapt_recipe(payload: RecipeAdaptRequest):
     if not payload.profile:
         payload.profile = CURRENT_PROFILE
     return await adapt_recipe_with_gemma(payload)
+
+# --- Vault Storage Endpoints ---
+
+@app.get("/api/recipes", response_model=List[AdaptedRecipeResponse])
+def list_saved_recipes():
+    """Retrieve all preserved family recipes."""
+    return SAVED_RECIPES
+
+@app.post("/api/recipes", response_model=AdaptedRecipeResponse)
+def save_recipe_to_vault(recipe: AdaptedRecipeResponse):
+    """Save an adapted recipe to the family cookbook."""
+    # Prevent duplicate titles
+    if not any(r.title == recipe.title for r in SAVED_RECIPES):
+        SAVED_RECIPES.append(recipe)
+    return recipe
