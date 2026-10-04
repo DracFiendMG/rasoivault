@@ -78,7 +78,7 @@ Today's Notes / Craving: {payload.custom_notes or 'None'}
 Adapt this recipe strictly respecting the restrictions while keeping authentic preparation steps. Return raw JSON only.
 """
 
-    client = BackboardClient(api_key=BACKBOARD_API_KEY)
+    client = BackboardClient(api_key=BACKBOARD_API_KEY, timeout=60)
     assistant_id, thread_id = await get_or_create_backboard_thread(client)
 
     logger.info(f"[RasoiVault] Dispatching prompt to provider='{LLM_PROVIDER}', model='{MODEL_NAME}'")
