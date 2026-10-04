@@ -129,7 +129,7 @@ Amma's note: "Don't make it dry, it should slide off the spoon smoothly."`;
               <span className="text-xs text-amber-700 font-medium bg-amber-50 px-2 py-0.5 rounded">Backboard Synced</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {profile.conditions.map((c, i) => (
+              {profile.preferences.map((c, i) => (
                 <span key={i} className="px-2.5 py-1 text-xs rounded-lg bg-rose-50 text-rose-700 border border-rose-100 font-medium">
                   {c}
                 </span>
@@ -139,7 +139,7 @@ Amma's note: "Don't make it dry, it should slide off the spoon smoothly."`;
               </span>
             </div>
             <p className="text-xs text-stone-500 italic">
-              Filters out generic replacements (avoids {profile.disliked_ingredients.join(', ')}).
+              Filters out generic replacements (avoids {profile.disliked_substitutes.join(', ')}).
             </p>
           </div>
 
